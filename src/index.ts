@@ -1,17 +1,16 @@
-import { createTask } from "./createTask";
+import { createTasks } from "./createTask";
 
-const payloads: unknown[] = [
+const payloads: unknown = [
   { title: "Read", dueDate: "2026-10-08" },
   { dueDate: "2026-10-08" },
   { title: 42 },
 ];
 
-for (const payload of payloads) {
-  const result = createTask(payload);
+const result = createTasks(payloads);
 
-  if (result.ok) {
-    console.log("Created task:", result.task);
-  } else {
-    console.error("Could not create task:", result.error);
-  }
+if (result.ok) {
+  console.log("Successful tasks:", result.successes);
+  console.log("Failed tasks:", result.failures);
+} else {
+  console.error("Could not process task batch:", result.error);
 }
